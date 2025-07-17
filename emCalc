@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="StyleSheet.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="extensions\css\jquery-ui.css">
+    <link rel="stylesheet" href="extensions\css\bootstrap.min.css">
+    <script src="extensions\js\chart-3.7.1.js"></script>
+    <script src="extensions\js\bootstrap-5.1.3.bundle.min.js"></script>
+    <script src="extensions\js\jquery-3.6.0.min.js"></script>
+    <script src="extensions\js\jquery-ui-1.12.0.min.js"></script>
+    <script src="tpEcoBalance.js"></script>
+
+    <title>CO&#8322; Rechner f&uuml;r Baustoffe</title>
+</head>
+<body>
+<div class="container">
+    <div class="grid">
+        <form id="input" onsubmit="calcCarbEm();" method="dialog">
+            <div class="heading">
+                <h2>Eingabefeld</h2>
+            </div>
+            <div class="media-left">
+                <div class="form-group">
+                    <p>1. Bitte w&auml;hlen Sie einen Baustoff:</p>
+                    <input id="txtSearch" placeholder="Direkt nach Baustoff suchen" class="form-control" onfocus="this.value=''">
+                    <div class="input-seperator">
+                        <hr class="solid">
+                        <p>oder</p>
+                        <hr class="solid">
+                    </div>
+                    <select id="ddlLvlOne" class="dropdown-toggle form-control" onchange="javascript:ddlLvlOneIndexChanged()">
+                        <option value="0"> Aus Kategorie w&auml;hlen</option>
+                    </select>
+                    <select id="ddlLvlTwo" class="dropdown-toggle form-control" style="display: none;"
+                            onchange="javascript:ddlLvlTwoIndexChanged()"></select>
+                    <select id="ddlLvlThree" class="dropdown-toggle form-control" style="display: none;"
+                            onchange="javascript:ddlLvlThreeIndexChanged()"></select>
+                    <select id="ddlLvlFour" class="dropdown-toggle form-control" style="display: none;"
+                            onchange="javascript:ddlLvlFourIndexChanged()"></select>
+
+                </div>
+            </div>
+            <div class="media-right">
+                <div class="form-group ">
+                    <p>2. Transportentfernung vom Herstellerort zur Baustelle:</p>
+                    <input list="distPresets" id="ddlDistance" class="dropdown-toggle form-control" required
+                           pattern="Deutschland|Europa|Asien|Afrika|Nordamerika|S&uuml;damerika|Ozeanien|^\d+$"
+                           title="Bitte geben Sie eine Distanz in km an. " placeholder="Distanz in km" onfocus="this.value=''"/></label>
+                    <datalist id="distPresets">
+                        <option>Deutschland</option>
+                        <option>Europa</option>
+                        <option>Asien</option>
+                        <option>Nordamerika</option>
+                        <option>S&uuml;damerika</option>
+                        <option>Ozeanien</option>
+                        <option>Afrika</option>
+                    </datalist>
+
+                </div>
+                <div class="form-group">
+                    <p>3. Menge:</p>
+                    <div class="input-group">
+                        <input id="txtQty" Enabled="true" placeholder="Menge" class="form-control" required pattern="^\d+(?:[.,]\d+)?$"
+                               title="Bitte geben Sie eine Nummer an"/>
+                        <span class="input-group-text " id="qtyUnit" runat="server"> - </span>
+                    </div>
+                    <div class="form-switch">
+                        <input type="checkbox" id="chckbxEoL" class="form-check-input" disabled/>
+                        <label class="form-check-label" for="chckbxEoL">
+                            Recyclingpotenzial des Baustoffs berücksichtigen.
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" id="btnAdd" class="btn btn-primary">Berechnen</button>
+            </div>
+        </form>
+        <main>
+            <div class="heading">
+                <h2>Zusammenfassung</h2>
+            </div>
+            <div class="text">
+                <div id="text-p">
+                    <p id="summaryInfotext" runat="server"> Bitte w&auml;hlen Sie zuerst einen Baustoff aus. Sie k&ouml;nnen direkt nach
+                        einem Baustoff suchen oder aus unserem Katalog w&auml;hlen. </p>
+                    <p id="compensateInfoText" runat="server"> W&auml;hlen Sie anschließend aus, wo das Produkt hergestellt wird. Sie k&ouml;nnen
+                        selbst eine Distanz in km angeben oder sich an unseren Richtwerten orientieren. </p>
+                    <p id="transportInfoText" runat="server">Nach der Mengeneingabe k&ouml;nnen Sie die CO&#8322;-Werte berechnen
+                        lassen.</p>
+                    <p id="footerLink" runat="server"><a href='#footer' id="aSource" data-bs-toggle="collapse"
+                                                         data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">Genauere
+                        Informationen zu den Daten.</a></p>
+                </div>
+
+                <div class="banner-container">
+                    <div class="banner">
+                        <h3>CO&#8322; Emission in CO&#8322;e:</h3>
+                        <p><span id="totalEmBanner" runat="server">0</span> <span id="bannerUnit" runat="server"> kg</span></p>
+                    </div>
+                    <div class="banner">
+                        <h3>Aktuelle CO&#8322;-Kosten:</h3>
+                        <p><span id="curCostBanner" runat="server">0</span><span id="bannerUnit" runat="server"> €</span></p>
+                    </div>
+                    <div class="banner">
+                        <h3>Umweltfolgekosten:</h3>
+                        <p><span id="gloCostBanner" runat="server">0</span><span id="bannerUnit" runat="server"> €</span></p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="chart">
+                <div class="chart-container">
+                    <canvas id="chtData" alt="Grafik CO&#8322; Emission Baustoff"></canvas>
+                </div>
+            </div>
+        </main>
+        <footer id="footer">
+
+            <h2>Informationen zu diesem Rechner</h2>
+            <div class="accordion" id="accordionSummary">
+
+                <div class="accordion-item">
+                    <h3 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                                aria-expanded="true" aria-controls="collapseOne">
+                            Wof&uuml;r wurde dieses Projekt erstellt
+                        </button>
+                    </h3>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                         data-bs-parent="#accordionSummary">
+                        <div class="accordion-body">
+                            <p>Nach aktuellen Quellen verursacht der Geb&auml;udesektor <a target='_blank' rel='noopener noreferrer'
+                                                                                           href="https://www.worldgbc.org/embodied-carbon">ca.
+                                39 %</a> des globalen Energieverbrauchs. Die Bauwirtschaft ist auch weltweit f&uuml;r die gr&ouml;ßten G&uuml;terbewegungen,
+                                den gr&ouml;ßten Ressourcenverbrauch und die meisten CO&#8322;-Emissionen verantwortlich. Dies wird
+                                deutlich, wenn in der Bilanzierung sowohl die Herstellung, als auch der Betrieb und der sp&auml;tere R&uuml;ckbau
+                                von Geb&auml;uden ber&uuml;cksichtigt werden. Genau hierdurch birgt die Branche andererseits aber auch ein
+                                enormes Einsparpotential. </p>
+                            <p>Ziel dieser Website ist es, die dargestelten Zahlen greifbar zu machen. Wir wollen f&uuml;r mehr Bewusstsein
+                                im Bereich des nachhaltigen Bauens sensibilisieren.</p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h3 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                                aria-expanded="false" aria-controls="collapseTwo">
+                            Wie werden meine Daten berechnet
+                        </button>
+                    </h3>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                         data-bs-parent="#accordionSummary">
+                        <div class="accordion-body">
+                            <strong>CO&#8322; Emissionen:</strong>
+                            <p>Nach Eingabe Ihrer Daten setzt sich der CO&#8322;-Fußabdruck aus den eigentlichen Emissionswerten des
+                                Baustoffs und denen des Transportwegs zusammen. F&uuml;r den Transportweg werden gewichtete Datens&auml;tze
+                                des <a target='_blank' rel='noopener noreferrer' href="https://www.transportmeasures.org/en/"> Network for
+                                    Transport Measures</a> in Zusammenhang mit Transportdaten der Herstellungsphase der OekoBau.dat
+                                verwendet. Die Auswahl des Herkunftslandes soll daf&uuml;r sensibilisieren, welche Auswirkung der
+                                Transportweg (in km Luftlinie) f&uuml;r den letztendlichen CO&#8322; Fußabdruck des Baustoffes hat. </p>
+                            <p id="sumCostLabel"></p>
+                            <strong>Aktuelle CO&#8322;-Kosten</strong>
+                            <p>Gem&auml;ß den Werten des <a target='_blank' rel='noopener noreferrer'
+                                                            href="https://www.bmuv.de/themen/klimaschutz-anpassung/klimaschutz/emissionshandel">nationales
+                                Emissionshandelssystem</a> hat eine Tonne CO&#8322; im Moment einen Festpreis von 45€. Dieser Preis ergibt
+                                sich aus den Kosten die bei der Durchf&uuml;hrung eines Ausgleichsprojekt entstehen w&uuml;rden.</p>
+                            <p id="curEmCostFooterInfo"></p>
+                            <strong>CO&#8322;-Folgekosten</strong>
+                            <p>Der tats&auml;chliche Schaden, den eine Tonne CO&#8322; verursacht ist allerdings deutlich h&ouml;her als die
+                                angesetzten 45€. Es gibt wissenschaftliche Ans&auml;tze, welche unter der Ber&uuml;cksichtigung der
+                                Umweltbelastungen einer Tonne CO&#8322; versuchen, einen Wert f&uuml;r die Umweltfolgekosten festzulegen.
+                                Nach Angaben des <a target='_blank' rel='noopener noreferrer'
+                                                    href="https://www.umweltbundesamt.de/presse/pressemitteilungen/konsequenter-umweltschutz-spart-der-gesellschaft">Umweltbundesamts</a>
+                                liegt der aktuelle Kostenansatz, unter Ber&uuml;cksichtigung der Sch&auml;den, welche zuk&uuml;nftige
+                                Generationen tragen m&uuml;ssen, bei 680 €. </p>
+                            <p id="gloEmCostFooterInfo"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h3 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                                aria-expanded="false" aria-controls="collapseThree">
+                            Wie kann ich meinen Fußabdruck minimieren
+                        </button>
+                    </h3>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                         data-bs-parent="#accordionSummary">
+                        <div class="accordion-body">
+                            <p>Mithilfe dieses Rechners k&ouml;nnen Sie verschiedene Baustoffe hinsichtlich ihres CO&#8322; Fußabdrucks
+                                miteinander vergleichen. Zus&auml;tzlich gibt es verschiedene M&ouml;glichkeiten den eigenen Fußabdruck
+                                mittels Ausgleichsprojekten zu verringern. Beispielsweise k&ouml;nnen Sie Aufforstungsprojekte wie <a
+                                        target='_blank' rel='noopener noreferrer' href="https://www.primaklima.org/">Primaklima</a> oder <a
+                                        target='_blank' rel='noopener noreferrer' href="https://www.treedom.net/de/">Treedom</a> unterst&uuml;tzen.
+                                Alternativm&ouml;glichkeiten bietet z.B. <a target='_blank' rel='noopener noreferrer'
+                                                                            href="https://climeworks.com/">Climeworks</a> mit einer
+                                Technologie CO&#8322; aus der Luft zu filtern und zu Gestein zu verwandeln.</p>
+                            <p></p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h3 class="accordion-header" id="headingFour">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour"
+                                aria-expanded="false" aria-controls="collapseFour">
+                            Woher wir unsere Daten beziehen
+                        </button>
+                    </h3>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                         data-bs-parent="#accordionSummary">
+                        <div class="accordion-body">
+                            <p> Die Daten werden auf Grundlage der Daten der <a target='_blank' rel='noopener noreferrer'
+                                                                                href="https://www.oekobaudat.de/">OekoBau.dat Datenbank</a> des
+                                Bundesministeriums f&uuml;r Wohnen, Stadtentwicklung und Bauwesen berechnet.
+                                Die CO&#8322; Emissionen werden in dieser Datenbank verschiedenen Phasen des Lebenszyklus eines Baustoffes
+                                nach DIN EN 15804 zugeordnet. In der folgenden Grafik sehen Sie diese genauer aufgegliedert.</p>
+                            <p>Die Datenbank wird regelm&auml;ßig aktualisiert. Es liegen im Moment noch nicht zu allen Stoffen vollst&auml;ndige
+                                Datens&auml;tze vor.</p>
+                            <div class="catTable">
+                                <table class="tg">
+                                    <thead>
+                                    <tr>
+                                        <th class="tg-c3ow" colspan="3" style="background-color:#4165e1">Herstellungsphase</th>
+                                        <th class="tg-c3ow" colspan="2" style="background-color:#6ecafb">Errichtungsphase</th>
+                                        <th class="tg-c3ow" colspan="5" style="background-color:#1be4e4">Nutzungsphase</th>
+                                        <th class="tg-c3ow" colspan="4" style="background-color:#1cd2b6">Entsorgungsphase</th>
+                                        <th class="tg-c3ow width2" style="background-color:#ecbb18">Vorteile und Belastungen außerhalb der
+                                            Systemgrenzen
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td class="tg-0pky rotate">
+                                            <div>Rohstoffbereitstellung</div>
+                                        </td>
+                                        <td class="tg-0pky rotate">
+                                            <div>Transport</div>
+                                        </td>
+                                        <td class="tg-0pky rotate">
+                                            <div>Herstellung</div>
+                                        </td>
+                                        <td class="tg-0pky rotate">
+                                            <div>Transport</div>
+                                        </td>
+                                        <td class="tg-0pky rotate">
+                                            <div>Bau/Einbau</div>
+                                        </td>
+                                        <td class="tg-0pky rotate">
+                                            <div>Nutzung</div>
+                                        </td>
+                                        <td class="tg-0pky rotate">
+                                            <div>Instandhaltung</div>
+                                        </td>
+                                        <td class="tg-0pky rotate">
+                                            <div>Reparatur</div>
+                                        </td>
+                                        <td class="tg-0pky rotate">
+                                            <div>Ersatz</div>
+                                        </td>
+                                        <td class="tg-0pky rotate">
+                                            <div>Umbau/Erneuerung</div>
+                                        </td>
+                                        <td class="tg-0pky rotate">
+                                            <div>Abbruch</div>
+                                        </td>
+                                        <td class="tg-0pky rotate">
+                                            <div>Transport</div>
+                                        </td>
+                                        <td class="tg-0pky rotate">
+                                            <div>Abfallerwirtschaftung</div>
+                                        </td>
+                                        <td class="tg-0pky rotate">
+                                            <div>Deponierung</div>
+                                        </td>
+                                        <td class="tg-0pky rotate">
+                                            <div>Recyclingpotenzial</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0lax">A1</td>
+                                        <td class="tg-0lax">A2</td>
+                                        <td class="tg-0lax">A3</td>
+                                        <td class="tg-0lax">A4</td>
+                                        <td class="tg-0lax">A5</td>
+                                        <td class="tg-0lax">B1</td>
+                                        <td class="tg-0lax">B2</td>
+                                        <td class="tg-0lax">B3</td>
+                                        <td class="tg-0lax">B4</td>
+                                        <td class="tg-0lax">B5</td>
+                                        <td class="tg-0lax">C1</td>
+                                        <td class="tg-0lax">C2</td>
+                                        <td class="tg-0lax">C3</td>
+                                        <td class="tg-0lax">C4</td>
+                                        <td class="tg-0lax">D</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax">B6</td>
+                                        <td class="tg-0lax" colspan="4">Betrieblicher Energieeinsatz</td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax">B7</td>
+                                        <td class="tg-0lax" colspan="4">Betrieblicher Wassereinsatz</td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                        <td class="tg-0lax"></td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <p>Sie haben weitere Fragen? Gern beantworten wir Ihnen diese pers&ouml;nlich. Schreiben Sie uns eine <a
+                    href="mailto:info@teamproject.de"> E-Mail.</a></p>
+        </footer>
+    </div>
+</div>
+<script type="text/javascript">
+    var obDataItemOnFocus;
+    var [gloEmCost, curEmCost, totalEm] = [0, 0, 0];
+    const ddlLvlOne = document.getElementById("ddlLvlOne");
+    const ddlLvlTwo = document.getElementById("ddlLvlTwo");
+    const ddlLvlThree = document.getElementById("ddlLvlThree");
+    const ddlLvlFour = document.getElementById("ddlLvlFour");
+    const ddlDistance = document.getElementById('ddlDistance');
+    const chckbxEoL = document.getElementById('chckbxEoL');
+
+    const curEmCostInEuroPerTonCO2E = 45;
+    const gloEmCostInEuroPerTonCO2E = 680;
+
+    let tooltips = [["A"], ["B"], ["C"], ["D"], ["E"]];
+
+    let chtData = document.getElementById("chtData").getContext("2d");
+    let obChart = new Chart(chtData, {
+        type: "bar",
+        data: {
+            labels: ["Baustoff"],
+            datasets: [
+                {
+                    label: "Herstellungsphase",
+                    data: [0],
+                    backgroundColor: "#4165e1",
+                    hoverBorderWidth: 3,
+                },
+                {
+                    label: "Transport zum Endverbraucher",
+                    data: [0],
+                    backgroundColor: "#6ecafb",
+                    hoverBorderWidth: 3,
+                },
+                {
+                    label: "Nutzungsphase",
+                    data: [0],
+                    backgroundColor: "#1be4e4",
+                    hoverBorderWidth: 3,
+                },
+                {
+                    label: "Entsorgungsphase",
+                    data: [0],
+                    backgroundColor: "#1cd2b6",
+                    hoverBorderWidth: 3,
+                },
+                {
+                    label: "Recyclingpotenzial",
+                    data: [0],
+                    backgroundColor: "#ecbb18",
+                    hoverBorderWidth: 3,
+                },
+            ],
+        },
+        options: {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        afterBody: (context) => tooltips[context[0].datasetIndex],
+                        label: (context) => {
+                            let val = context.dataset.data[0]
+                            if (val >= 1000 || val <= -1000) {
+                                val = (val / 1000).toLocaleString("de-DE", {
+                                    maximumFractionDigits: 1,
+                                });
+                                return `${context.dataset.label}: ${val} t CO₂E`;
+                            }
+                            val = val.toLocaleString("de-DE", {
+                                maximumFractionDigits: 1,
+                            });
+                            return `${context.dataset.label}: ${val} kg CO₂E`;
+                        },
+                    },
+                },
+            },
+            responsive: true,
+            legend: {
+                position: "top",
+                align: "end",
+                labels: {
+                    boxWidth: 30,
+                },
+            },
+            maintainAspectRatio: false,
+            scales: {
+                x: {stacked: true},
+                y: {
+                    stacked: true,
+                    title: {
+                        display: true,
+                        text: "CO₂E",
+                    },
+                    ticks: {
+                        callback: function (value, index, values) {
+                            if (value >= 1000000 || value <= -1000000) {
+                                return (value / 1000000).toFixed(0) + ' Tsd.';
+                            } else if (value >= 1000 || value <= -1000) {
+                                return (value / 1000).toFixed(0);
+                            }
+                            return value
+                        }
+                    }
+                },
+            },
+        },
+    });
+    fetchData("oekoBau/obLvlOne.csv?t=" + Date.now()).then((rows) => {
+        rows.forEach((row) => {
+            const columns = row.split(";");
+            const ddlVal = columns[0];
+            const ddlName = columns[1];
+
+            $("#ddlLvlOne").append(
+                '<option value="' + ddlVal + '">' + ddlName + "</option>"
+            );
+        });
+    });
+
+    aceSearch();
+
+    $("#aComp", "#aInfo", "aSource").ready(() => {
+        $("#footer").on("shown.bs.collapse", () => {
+            window.location.hash = "#footer";
+        });
+    });
+
+    if (window.parent) {
+        new ResizeObserver((entries) => {
+            postToParent();
+        }).observe(document.body);
+
+        postToParent();
+        window.addEventListener("resize", postToParent);
+        window.onresize = () => postToParent();
+
+        function postToParent() {
+            window.parent.postMessage({
+                message: "Here I'am",
+                identifier: "co2calc",
+                height: document.body.scrollHeight + 100,
+            });
+        }
+    }
+
+</script>
+
+</body>
+</html>
