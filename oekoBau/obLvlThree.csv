@@ -1,0 +1,337 @@
+﻿1;1;01;Zement
+1;1;02;Kalk
+1;1;03;Gips
+1;1;04;Lehm
+1;2;01;Sand und Kies
+1;2;02;Naturstein
+1;2;03;Bims
+1;2;04;Blähton
+1;2;05;Blähschiefer
+1;2;06;Blähglas
+1;2;07;Perlite
+1;2;08;Kraftwerksnebenprodukte
+1;2;09;Puzzolan
+1;2;10;Trockenschüttung
+1;3;01;Kalksandstein
+1;3;02;Ziegel
+1;3;03;Porenbeton
+1;3;04;Leichtbeton
+1;3;05;Betonfertigteile und Betonwaren
+1;3;06;Steinzeug
+1;3;07;Fliesen und Platten
+1;3;08;Naturwerkstein
+1;3;09;Schiefer
+1;3;10;Dachziegel
+1;3;11;Dachsteine
+1;3;12;Faserzement
+1;3;13;Gipsplatten
+1;3;14;Trockenestrich
+1;3;15;Deckenplatten
+1;3;16;Glasbausteine
+1;3;17;Lehmsteine
+1;3;18;Brandschutzplatten
+1;3;19;Substrate
+1;3;20;Kunststein
+1;4;01;Beton
+1;4;02;Mauermörtel
+1;4;03;Estrich trocken
+1;4;04;Putz und Putzmörtel
+1;4;05;Kleber und Klebemörtel
+1;4;06;Betonzusatzmittel
+1;5;01;Splittmastixasphalt
+1;5;02;Gussassphalt
+1;5;03;Asphaltbinder
+1;5;04;Tragschichten
+1;6;01;EoL Putz
+1;6;02;EoL Armierungen
+1;7;01;Anorganische Pigmente
+2;1;01;Mineralwolle
+2;1;02;Glaswolle
+2;1;03;Steinwolle
+2;2;01;EPS weiß
+2;2;02;EPS grau
+2;2;03;EPS grau-weiß
+2;3;01;XPS weiß
+2;4;01;PU mit Aluminium
+2;4;02;PU mit Mineralvlies
+2;4;03;PU Blockschaum
+2;4;04;PIR-Hartschaum
+2;5;01;PF-Platten
+2;6;01;Platten
+2;7;01;Holzwolleleichtbauplatten
+2;8;01;Platten
+2;8;02;Granulat
+2;9;01;Expandierter Kork
+2;10;01;Holzfaserdämmplatte
+2;10;02;Holzfasern und Holzspäne, lose
+2;11;01;Zellulose-Einblas-Dämmstoff
+2;11;02;Zelluloseplatten
+2;12;01;Vlies
+2;13;01;Vlies
+2;14;01;Baumwolle konventionell
+2;14;02;Baumwolle ökologisch
+2;16;01;Ortschaum
+2;17;01;Schaum
+2;18;01;Schaum
+2;19;01;Schaum
+2;20;01;Porenbeton
+2;20;02;Calciumsilikat
+2;21;01;Wärmedämmverbundsystem
+2;21;02;WDVS-Dübel
+2;21;03;WDVS komplett
+2;22;01;EoL Holzfaserdämmplatten
+2;22;02;EoL Glaswolle
+2;22;03;EoL Mineralwolle
+2;22;04;EoL WDVS-Dübel
+2;22;05;EoL WDVS
+2;22;06;EoL EPS
+2;22;07;EoL Holzwolle
+2;23;01;Strohballen
+2;23;02;Strohplatten
+2;24;01;Vakuumisolationspaneele
+2;24;02;Hydrophobe Platten
+2;25;01;Isokörbe
+2;26;01;Mineralisch
+2;26;02;Organisch
+2;27;01;Schaumbeton Dämmplatten
+3;1;01;Bau-Schnittholz
+3;1;02;Konstruktionsvollholz
+3;1;03;Balkenschichtholz (Duo-Triobalken)
+3;1;04;Brettschichtholz (BSH)
+3;1;05;Brettschichtholzplatte
+3;2;01;3- und 5-Schichtplatten
+3;2;02;Sperrholz
+3;2;03;Funierschichtholz
+3;2;04;OSB-Platte
+3;2;05;Laminated Veneer Lumber (LVL)
+3;2;06;Spanplatten
+3;2;07;Holzfaserplatten
+3;2;08;Holzzementplatten
+3;2;09;Wood-Plastic-Composites
+3;2;10;Elemente aus Holzwerkstoffen
+3;3;01;Laminat
+3;3;02;Parkett
+3;3;03;Kork
+3;3;04;Mehrschichtig modulare Bodenbeläge
+3;4;01;EoL Spanplatte
+3;4;02;EoL OSB
+3;4;03;EoL allgemein
+3;4;04;EoL Holzfaserplatte
+3;4;05;EoL Laminat
+3;4;06;EoL Schichtplatten
+3;5;01;Acetyliertes Holz
+3;5;02;Thermisch behandeltes Holz
+4;1;01;Betonstabstahl
+4;1;02;Betonstahlmatten
+4;1;03;Stahlprofile
+4;1;04;Stahlbleche
+4;1;05;Guss- und Schmiedeteile aus Stahl und Eisen
+4;1;06;Befestigungsmittel
+4;2;01;Edelstahlbleche
+4;2;02;Edelstahlprofile
+4;2;03;Edelstahl Trinkwasserrohre
+4;2;04;Befestigungsmittel
+4;3;01;Aluminiumbleche
+4;3;02;Aluminiumprofil
+4;3;03;Gussteile aus Aluminium
+4;3;04;Aluminiumfolie
+4;4;01;Kupferbleche
+4;4;02;Kupferrohre
+4;4;03;Kupferprofile
+4;4;04;Schmiede- und Gussteile aus Kupfer und Messing
+4;5;01;Zinkbleche
+4;6;01;Bleibleche
+4;7;01;Anodisieren von Aluminium
+4;7;02;(Nass-) Lackieren von Metallen
+4;7;03;Pulverbeschichten
+4;7;04;Verzinken von Stahl
+4;8;01;EoL von Aluminium
+4;8;02;EoL von Edelstahl
+4;8;03;EoL von Kupferblechen
+4;8;04;EoL von Kupferblech (Bronze legiert)
+4;8;05;EoL von Kupferblech (Gold legiert)
+4;8;06;EoL von Kupferrohr
+4;8;07;EoL von Sandwichelemente
+4;8;08;EoL von Stahlblechen
+4;8;09;EoL von Stahlprofilen
+4;8;10;EoL von Zinkblechen
+5;1;01;Grundierungen Farben und Putze
+5;3;01;Bitumenbeschichtungen
+5;4;01;Dispersion
+5;4;02;Silikat-Dispersion
+5;4;03;Silikonharz
+5;5;01;Wand- und Deckenbeläge
+5;5;02;Innenfarben
+5;5;03;Dispersionsklebstoffe
+5;6;01;Lacksysteme Holzfenster
+5;6;02;Lacksysteme Holzfassade
+5;6;03;Parkettlack
+5;6;04;Lacksysteme Metall
+5;7;01;EoL Grundierung
+5;8;01;Reaktionsharze auf Epoxidharzbasis
+5;8;02;Reaktionsharze auf PU-Basis
+5;8;03;Reaktionsharze auf Methacrylatbasis
+5;9;01;Innen- und Außenbeschichtungen
+6;1;01;Trinkwasserrohre
+6;1;02;Abwasserrohre
+6;1;03;Regen-/Grauwasserrohre
+6;2;01;PVC-Bodenbeläge
+6;2;02;Gummi-/Kautschuk-Bodenbeläge
+6;2;03;Synth. Thermoplast / Polyolefin
+6;2;04;Linoleum-Bodenbeläge
+6;2;05;Textile Bodenbeläge
+6;2;06;Mehrschichtig modulare Bodenbeläge
+6;3;01;Bitumen-Dachbahnen
+6;3;02;PVC-Dachbahnen
+6;3;03;Elastomer-Dachbahnen
+6;3;04;EVA-Dachbahnen (Etylen-Vinylacetat)
+6;3;05;TPO-Dachbahnen (FPO)
+6;3;06;Solar-Kunststoffdachbahnen
+6;3;07;Dübel für Bahnen
+6;3;08;ECB-Dachbahnen (Ethylen-Copolymer-Bitumen)
+6;3;09;PIB-Dachbahnen (Polyisobutylen)
+6;4;01;Kunststoffprofile hart
+6;4;02;Kunststoffprofile elastisch
+6;5;01;Harz-Komposit Fassadenplatten
+6;5;02;Transparente Platten
+6;5;03;Dübelsysteme für Platten
+6;6;01;Unterspannbahn
+6;6;02;Dampfbremse / Dampfsperre
+6;6;03;Folien zur Abdichtung
+6;6;04;Vliese
+6;6;05;Baupappen
+6;6;06;Folienkissen
+6;6;07;Technische Textilien
+6;7;01;Kautschuk
+6;7;02;Silikon
+6;7;03;PUR
+6;7;04;Bitumen
+6;7;05;PVC
+6;7;06;Acrylat
+6;7;07;Polysulfid
+6;8;01;EoL allgemein
+6;8;02;EoL Dübelsystem für Platten
+6;8;03;EoL Dübelsystem für Planen
+6;8;04;EoL Elastomer-Dachbahnen
+6;8;05;EoL EVA-Dachbahnen
+7;1;01;Holz
+7;1;02;Holz thermisch getrennt
+7;1;03;Holzwerkstoff
+7;1;04;Holz-Aluminium
+7;1;05;Aluminium
+7;1;06;Aluminium thermisch getrennt
+7;1;07;Stahl
+7;1;08;Stahl verzinkt
+7;1;09;PVC
+7;1;10;harter PUR-Integralschaumstoff
+7;2;01;Transparente Füllungen
+7;2;02;Opake Füllungen
+7;3;01;Dichtprofile
+7;3;02;Spritzbare Dichtstoffe
+7;3;03;Imprägnierte Dichtungsbänder aus Schaumkunststoff
+7;3;04;Fugendichtungsbänder
+7;3;05;Elastomer-Fugenbänder
+7;3;06;Dichtfolien
+7;3;07;Anputzdichtleisten
+7;4;01;Stahlbeschläge
+7;4;02;Aluminiumbeschläge
+7;4;03;Bronzebeschläge
+7;4;04;Messingbeschläge
+7;4;05;Edelstahlbeschläge
+7;4;06;Befestigungen
+7;4;07;Fenstergriffe
+7;4;08;Zinkbeschläge
+7;4;09;Kunststoffbeschläge
+7;5;01;EoL Stahl
+7;5;02;EoL Aluminium
+7;5;03;EoL Bronze
+7;5;04;EoL Messing
+7;5;05;EoL Edelstahl
+7;5;06;EoL Zink
+7;5;07;EoL Fenster
+7;6;01;Stahl
+7;6;02;Aluminium
+7;6;03;Holz
+7;6;04;Kunststoff
+7;7;01;mechanisch
+7;7;02;elektrisch
+7;8;01;Holzfenster
+7;8;02;Holz-Metallfenster
+7;8;03;Metallfenster
+7;8;04;Kunststofffenster
+7;8;05;Sonstige Fenster
+7;9;01;Vorhangfassade - Pfosten-Riegel-Fassaden
+7;9;02;Vorhangfassade - Element-Fassaden
+7;9;03;Sonstige Fassaden
+7;10;01;Oberlichter
+7;10;02;Rauch-/Wärmeabzugsanlagen
+7;10;03;Sonstige Tageslichtsysteme
+7;11;01;Sonnenschutzsysteme
+7;11;02;Fingerschutzsysteme
+7;11;03;Feuer-/Rauchschutzsysteme
+8;1;01;Wärmeerzeuger
+8;1;02;Wärmeverteilung und Abgabe
+8;1;03;Speicher
+8;2;01;Lüftungsanlagen
+8;2;02;Klimatisierung/Kältemaschinen
+8;2;03;Zubehör
+8;2;04;Kältemittel
+8;3;01;Sanitärkeramik
+8;3;02;Armaturen
+8;3;03;Dusch- und Badewannen
+8;4;01;Kabel
+8;4;02;Schalter und Steckdosen
+8;4;03;Sicherungs- und Schaltschränke
+8;4;04;Beleuchtung
+8;4;05;Batteriespeicher
+8;5;01;Fahrstuhl
+8;5;02;Fahrtreppe
+8;6;01;Nutzung Wärmeerzeuger
+8;6;02;Nutzung Lüftung und Klimatechnik
+8;6;03;Nutzung Armaturen
+8;6;04;Nutzung Beleuchtung
+8;6;05;Nutzung Beförderungstechnik
+8;6;06;Nutzung Wärmeerzeuger (EnEV)
+8;7;01;EoL Wärmeerzeuger
+8;7;02;EoL Lüftungen und Klimatechnik
+8;7;03;EoL Sanitär
+8;7;04;EoL Elektro
+8;7;05;EoL Beförderungstechnik
+8;8;01;Schutzsysteme zur Kabel- und Rohrabschottung
+9;1;01;Bagger/Aushub
+9;1;02;Betonieren
+9;1;03;Schalung
+9;1;04;Schweißen
+9;2;01;Erdgas
+9;2;02;Flüssiggas
+9;2;03;Heizöl
+9;2;04;Holz-Pellets
+9;2;05;Strom
+9;2;06;Fernwärme
+9;2;07;Trinkwasser
+9;2;08;Biogas
+9;2;09;Pflanzenölkraftstoff
+9;3;01;LKW
+9;3;02;Bahn
+9;3;03;Binnenschiff
+9;3;04;Seeschiff
+9;4;01;PKW
+9;4;02;Bahn
+9;4;03;Flugzeug
+9;5;01;Bauschuttaufbereitung
+9;5;02;Bauschuttdeponierung
+9;5;03;Regeldeponie
+9;5;04;Müllverbrennung
+10;1;04;Innenwände
+10;1;05;Decken
+10;1;03;Aussenwände
+10;1;06;Böden
+10;1;07;Bewehrung
+10;1;08;Tragende wärmedämmende Elemente
+10;1;09;Dachaufbauten
+100;1;01;Bauschutt
+100;1;02;Hausmüll
+100;1;03;Holz
+100;1;04;Metalle
+100;1;06;Kunststoffe
+100;1;08;Gebäudetechnik

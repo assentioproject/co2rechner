@@ -1,0 +1,90 @@
+﻿1;1;Bindemittel
+1;2;Zuschläge
+1;3;Steine und Elemente
+1;4;Mörtel und Beton
+1;5;Asphalt
+1;6;End-of-life-Prozesse
+1;7;Pigmente
+2;1;Mineralwolle
+2;2;Expandiertes Polystyrol (EPS)
+2;3;Extrudiertes Polystyrol (XPS)
+2;4;Polyurethan-Hartschaum (PU)
+2;5;Phenolharz-Hartschaum (PF)
+2;6;Schaumglas
+2;7;Holzwolleplatten
+2;8;Blähperlit
+2;9;Expandierter Kork
+2;10;Holzfasern
+2;11;Zellulosefaser
+2;12;Flachsfaser
+2;13;Hanffaser
+2;14;Baumwolle
+2;15;Schafswolle
+2;16;Harnstoff-Formaldehydharz
+2;17;Melaminharz
+2;18;Polyethylen
+2;19;Kautschuk
+2;20;Calciumsilikat / Calcium-Silikathydrat
+2;21;Wärmedämmverbundsystem
+2;22;End-of-life-Prozesse
+2;23;Stroh
+2;24;Siliziumdioxid-basiert
+2;25;Dämmelemente
+2;26;Ortschaum
+2;27;Schaumbeton
+3;1;Vollholz
+3;2;Holzwerkstoffe
+3;3;Holzböden
+3;4;End-of-life-Prozesse
+3;5;Modifiziertes Holz
+4;1;Stahl und Eisen
+4;2;Edelstahl
+4;3;Aluminium
+4;4;Kupfer
+4;5;Zink
+4;6;Blei
+4;7;Oberflächenbehandlung und Beschichtung von Metallen
+4;8;End-of-life-Prozesse von Metallen
+5;1;Grundierungen
+5;2;Bodenbeschichtungen
+5;3;Bituminöse Anstriche
+5;4;Fassadenfarben
+5;5;Innenbeschichtungen
+5;6;Lacke und Lasuren
+5;7;End-of-life-Prozesse
+5;8;Reaktionsharze
+5;9;Brandschutz
+6;1;Rohre
+6;2;Bodenbeläge
+6;3;Dachbahnen
+6;4;Profile
+6;5;Kunststoffprofile elastisch
+6;6;Folien und Vliese
+6;7;Dichtmassen
+6;8;End-of-life-Prozesse Kunststoffe
+7;1;Rahmen / Profile
+7;2;Füllungen
+7;3;Dichtungskomponenten / -materialien
+7;4;Beschläge
+7;5;End-of-life-Prozesse
+7;6;Türen und Tore
+7;7;Antriebssysteme
+7;8;Fenster
+7;9;Fassaden
+7;10;Tageslichtsysteme und Rauch- / Wärmeabzugsanlagen 
+7;11;Zubehör für Fenster, Fassaden, Türen und Tore
+8;1;Heizung
+8;2;Klimatisierung und Lüftung
+8;3;Sanitär
+8;4;Elektro
+8;5;Beförderung
+8;6;Nutzung
+8;7;End-of-life-Prozesse
+8;8;Brandschutz
+9;1;Baustellenprozesse
+9;2;Energieträger - Bereitstellung frei Verbraucher
+9;3;Güter - Transporte[t km]
+9;4;Personen - Transporte[Personen km]
+9;5;Abfallaufbereitung und -entsorgung (EoL)
+10;1;Systembauteile
+100;1;Generisch
