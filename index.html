@@ -450,7 +450,7 @@
             },
         },
     });
-    fetchData("oekoBau/obLvlOne.csv?t=" + Date.now()).then((rows) => {
+    fetchData("obLvlOne.csv?t=" + Date.now()).then((rows) => {
         rows.forEach((row) => {
             const columns = row.split(";");
             const ddlVal = columns[0];
